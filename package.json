@@ -1,0 +1,25 @@
+{
+  "name": "fish-install",
+  "version": "0.0.0",
+  "description": "Install Fish functions from directories",
+  "author": "Eugene Sharygin <eush77@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/eush77/fish-install",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eush77/fish-install"
+  },
+  "bugs": {
+    "url": "https://github.com/eush77/fish-install/issues"
+  },
+  "keywords": [
+    "fish",
+    "shell",
+    "function",
+    "script",
+    "functions",
+    "install"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}
