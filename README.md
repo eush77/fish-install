@@ -16,7 +16,9 @@ No config adjustment required. `$fish_function_path` is modified instead.
 ```js
 var install = require('fish-install');
 
-install(__dirname + '/functions');
+install(__dirname + '/functions', function (err) {
+  /*..*/
+});
 ```
 
 ## CLI
@@ -25,7 +27,7 @@ install(__dirname + '/functions');
 
 ## API
 
-### `install(path)`
+### `install(path, cb(err))`
 
 `path`: directory with functions you want to install.
 
@@ -39,7 +41,7 @@ As a set-up utility for functions and scripts (use postinstall hook or the API):
 npm install fish-install
 ```
 
-Globally:
+As a system-wide command line utility:
 
 ```shell
 npm install -g fish-install

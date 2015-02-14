@@ -30,5 +30,9 @@ process.exitCode = (function main (argv) {
     throw(e);
   }
 
-  return (install(dir), 0);
+  install(dir, function (err) {
+    if (err) throw err;
+  });
+
+  return 0;
 }(process.argv.slice(2)));
