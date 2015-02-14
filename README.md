@@ -19,6 +19,10 @@ var install = require('fish-install');
 install(__dirname + '/functions');
 ```
 
+## CLI
+
+`fish-install $directory` installs `$directory` as a Fish search path.
+
 ## API
 
 ### `install(path)`
@@ -28,6 +32,14 @@ install(__dirname + '/functions');
 **Note**: functions themselves are not copied anywhere, so the directory should better be persistent.
 
 ## Install
+
+As a set-up utility for functions and scripts (use postinstall hook or the API):
+
+```shell
+npm install fish-install
+```
+
+Globally:
 
 ```shell
 npm install -g fish-install
