@@ -12,7 +12,7 @@ module.exports = function (sourceDir, cb) {
   sourceDir = path.resolve(sourceDir);
   cb = once(cb);
 
-  spawn('fish', [install, sourceDir])
+  spawn('fish', [install, sourceDir], { stdio: 'inherit' })
     .on('error', cb)
     .on('exit', function (code, signal) {
       var error = (code != 0)
