@@ -11,19 +11,13 @@ No config adjustment required. `$fish_function_path` is modified instead.
 [david]: https://david-dm.org/eush77/fish-install
 [david-badge]: https://david-dm.org/eush77/fish-install.png
 
-## Example
-
-```js
-var install = require('fish-install');
-
-install(__dirname + '/functions', function (err) {
-  /*..*/
-});
-```
-
 ## CLI
 
-`fish-install $directory` installs `$directory` as a Fish search path.
+```
+fish-install $directory
+```
+
+This line installs `$directory` as a new Fish search path.
 
 ## API
 
@@ -33,9 +27,21 @@ install(__dirname + '/functions', function (err) {
 
 **Note**: functions themselves are not copied anywhere, so the directory should better be persistent.
 
+## Publishing Fish functions to npm
+
+1. Install `fish-install` as a dependency.
+1. Put your functions to a separate directory (say `functions`).
+1. Add the following to `package.json`:
+
+```json
+"scripts": {
+  "postinstall": "fish-install functions"
+}
+```
+
 ## Install
 
-As a set-up utility for functions and scripts (use postinstall hook or the API):
+As a set-up utility for functions:
 
 ```shell
 npm install fish-install
