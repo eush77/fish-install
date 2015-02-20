@@ -21,16 +21,8 @@ var version = function () {
 
 
 var main = function (dir) {
-  try {
-    if (!fs.statSync(dir).isDirectory()) {
-      return usage();
-    }
-  }
-  catch (e) {
-    if (e.code == 'ENOENT') {
-      return usage();
-    }
-    throw(e);
+  if (!fs.statSync(dir).isDirectory()) {
+    throw new Error('Not a directory: ' + dir);
   }
 
   install(dir, function (err) {
@@ -54,6 +46,12 @@ process.exitCode = (function (argv) {
       return version();
 
     default:
-      return main(argv[0]);
+      try {
+        return main(argv[0]);
+      }
+      catch (e) {
+        usage();
+        throw e;
+      }
   }
 }(process.argv.slice(2)));
