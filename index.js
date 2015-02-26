@@ -7,9 +7,8 @@ var path = require('path')
   , spawn = require('child_process').spawn;
 
 
-var install = path.resolve(__dirname, 'src/install.fish');
-
-module.exports = function (sourceDir, cb) {
+var runScript = function (script, sourceDir, cb) {
+  script = path.resolve(__dirname, 'src', script);
   sourceDir = path.resolve(sourceDir);
   cb = once(cb);
 
@@ -17,7 +16,7 @@ module.exports = function (sourceDir, cb) {
     'FISH_INSTALL_PATH': sourceDir
   });
 
-  spawn('fish', [install, sourceDir], {
+  spawn('fish', [script, sourceDir], {
     stdio: 'inherit',
     env: env
   }).on('error', cb)
@@ -28,3 +27,7 @@ module.exports = function (sourceDir, cb) {
       cb(error);
     });
 };
+
+
+exports.install = runScript.bind(null, 'install.fish');
+exports.remove = runScript.bind(null, 'remove.fish');
