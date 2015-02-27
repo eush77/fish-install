@@ -46,7 +46,8 @@ This line removes `$directory` (all occurrences) from `$fish_function_path`.
 
 ```json
 "scripts": {
-  "postinstall": "fish-install functions"
+  "install": "fish-install functions",
+  "uninstall": "fish-install remove functions"
 }
 ```
 
