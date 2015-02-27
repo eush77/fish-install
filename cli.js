@@ -7,7 +7,7 @@ var fs = require('fs');
 
 
 var usage = function () {
-  return 'Usage:  fish-install DIRECTORY\n'
+  return 'Usage:  fish-install [install] DIRECTORY\n'
     + '        fish-install remove DIRECTORY\n'
     + '        fish-install [--help | --version]';
 };
@@ -20,6 +20,9 @@ var version = function () {
 
 
 var main = function (method, dir) {
+  if (Object.keys(fishInstall).indexOf(method) < 0) {
+    throw new Error('Invalid method: ' + method);
+  }
   if (!fs.statSync(dir).isDirectory()) {
     throw new Error('Not a directory: ' + dir);
   }
@@ -48,10 +51,7 @@ process.exitCode = (function (argv) {
         return main('install', argv[0]);
 
       case 2:
-        if (argv[0] == 'remove') {
-          return main('remove', argv[1]);
-        }
-        throw new Error('Invalid method: ' + argv[0]);
+        return main(argv[0], argv[1]);
 
       default:
         console.error(usage());

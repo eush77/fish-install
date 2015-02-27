@@ -14,7 +14,7 @@ No config adjustment required. `$fish_function_path` is modified instead.
 ## CLI
 
 ```
-fish-install $directory
+fish-install [install] $directory
 ```
 
 This line installs `$directory` as a new Fish search path.
