@@ -19,13 +19,23 @@ fish-install $directory
 
 This line installs `$directory` as a new Fish search path.
 
+```
+fish-install remove $directory
+```
+
+This line removes `$directory` (all occurrences) from `$fish_function_path`.
+
 ## API
 
-### `install(path, cb(err))`
+### `fishInstall.install(path, cb(err))`
 
-`path`: directory with functions you want to install.
+`path` — directory with functions to install.
 
 **Note**: functions themselves are not copied anywhere, so the directory should better be persistent.
+
+### `fishInstall.remove(path, cb(err))`
+
+`path` — directory to remove from `$fish_function_path`.
 
 ## Publishing Fish functions to npm
 
