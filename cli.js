@@ -23,8 +23,17 @@ var main = function (method, dir) {
   if (Object.keys(fishInstall).indexOf(method) < 0) {
     throw new Error('Invalid method: ' + method);
   }
-  if (!fs.statSync(dir).isDirectory()) {
-    throw new Error('Not a directory: ' + dir);
+
+  try {
+    if (!fs.statSync(dir).isDirectory()) {
+      throw new Error('Not a directory: ' + dir);
+    }
+  }
+  catch (e) {
+    // Allow non-existent directories, disallow existent non-directories.
+    if (e.code != 'ENOENT') {
+      throw e;
+    }
   }
 
   fishInstall[method](dir, function (err) {
