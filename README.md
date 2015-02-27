@@ -27,6 +27,7 @@ This line removes `$directory` (all occurrences) from `$fish_function_path`.
 
 ## API
 
+### `fishInstall(path, cb(err))`
 ### `fishInstall.install(path, cb(err))`
 
 `path` — directory with functions to install.

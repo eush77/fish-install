@@ -29,5 +29,6 @@ var runScript = function (script, sourceDir, cb) {
 };
 
 
-exports.install = runScript.bind(null, 'install.fish');
-exports.remove = runScript.bind(null, 'remove.fish');
+module.exports = runScript.bind(null, 'install.fish');
+module.exports.install = module.exports;
+module.exports.remove = runScript.bind(null, 'remove.fish');
