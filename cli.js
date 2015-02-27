@@ -7,17 +7,15 @@ var fs = require('fs');
 
 
 var usage = function () {
-  console.error('Usage:  fish-install DIRECTORY');
-  console.error('        fish-install remove DIRECTORY');
-  console.error('        fish-install [--help | --version]');
-  return 1;
+  return 'Usage:  fish-install DIRECTORY\n'
+    + '        fish-install remove DIRECTORY\n'
+    + '        fish-install [--help | --version]';
 };
 
 
 var version = function () {
   var pkg = require('./package.json');
-  console.error(pkg.name + ' v' + pkg.version);
-  return 1;
+  return pkg.name + ' v' + pkg.version;
 };
 
 
@@ -35,34 +33,33 @@ var main = function (method, dir) {
 
 
 process.exitCode = (function (argv) {
+  if (argv == '--help') {
+    console.log(usage());
+    return 0;
+  }
+  if (argv == '--version') {
+    console.log(version());
+    return 0;
+  }
+
   try {
     switch (argv.length) {
-      case 0:
-        return usage();
-
       case 1:
-        switch (argv[0]) {
-          case '--help':
-            return usage();
-
-          case '--version':
-            return version();
-
-          default:
-            return main('install', argv[0]);
-        }
+        return main('install', argv[0]);
 
       case 2:
         if (argv[0] == 'remove') {
           return main('remove', argv[1]);
         }
+        throw new Error('Invalid method: ' + argv[0]);
 
       default:
-        return usage();
+        console.error(usage());
+        return 1;
     }
   }
   catch (e) {
-    usage();
+    console.error(usage());
     throw e;
   }
 }(process.argv.slice(2)));
