@@ -38,3 +38,4 @@ var install = function (sourceDir) {
 
 module.exports = module.exports.install = install;
 module.exports.remove = runScript.bind(null, 'remove.fish', {}, 1);
+module.exports.list = runScript.bind(null, 'list.fish', {}, 0);

@@ -10,6 +10,7 @@ var fs = require('fs'),
 var usage = function () {
   return 'Usage:  fish-install [install] DIRECTORY\n'
     + '        fish-install remove DIRECTORY\n'
+    + '        fish-install list\n'
     + '        fish-install [--help | --version]';
 };
 
@@ -65,7 +66,12 @@ process.exitCode = (function (argv) {
   try {
     switch (argv.length) {
       case 1:
-        return invokeWithDir('install', argv[0]);
+        if (argv[0] == 'list') {
+          return invoke('list');
+        }
+        else {
+          return invokeWithDir('install', argv[0]);
+        }
 
       case 2:
         return invokeWithDir(argv[0], argv[1]);

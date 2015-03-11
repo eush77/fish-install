@@ -25,6 +25,12 @@ fish-install remove $directory
 
 Remove `$directory` (all occurrences) from `$fish_function_path`.
 
+```
+fish-install list
+```
+
+List installed directories.
+
 ## API
 
 ### `fishInstall(path, [cb(err)])`
@@ -37,6 +43,10 @@ Remove `$directory` (all occurrences) from `$fish_function_path`.
 ### `fishInstall.remove(path, [cb(err)])`
 
 `path` — directory to remove from `$fish_function_path`.
+
+### `fishInstall.list([cb(err)])`
+
+List installed paths.
 
 ## Publishing Fish functions to npm
 
