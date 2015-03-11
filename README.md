@@ -27,14 +27,14 @@ Remove `$directory` (all occurrences) from `$fish_function_path`.
 
 ## API
 
-### `fishInstall(path, cb(err))`
-### `fishInstall.install(path, cb(err))`
+### `fishInstall(path, [cb(err)])`
+### `fishInstall.install(path, [cb(err)])`
 
 `path` — directory with functions to install.
 
 **Note**: functions themselves are not copied anywhere, so the directory should better be persistent.
 
-### `fishInstall.remove(path, cb(err))`
+### `fishInstall.remove(path, [cb(err)])`
 
 `path` — directory to remove from `$fish_function_path`.
 

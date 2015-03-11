@@ -9,7 +9,7 @@ var path = require('path'),
 
 var runScript = function (script, env, argc) {
   var argv = [].slice.call(arguments, 2);
-  var cb = once(argv[argc]);
+  var cb = once(argv[argc] || function () {});
   argv.length = argc;
 
   script = path.resolve(__dirname, 'src', script);
