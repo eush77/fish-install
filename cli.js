@@ -3,7 +3,8 @@
 
 var fishInstall = require('./');
 
-var fs = require('fs');
+var fs = require('fs'),
+    path = require('path');
 
 
 var usage = function () {
@@ -19,11 +20,22 @@ var version = function () {
 };
 
 
-var main = function (method, dir) {
+var invoke = function (method) {
   if (Object.keys(fishInstall).indexOf(method) < 0) {
     throw new Error('Invalid method: ' + method);
   }
 
+  var argv = [].slice.call(arguments, 1);
+
+  fishInstall[method](argv.concat(function (err) {
+    if (err) throw err;
+  }));
+
+  return 0;
+};
+
+
+var invokeWithDir = function (method, dir) {
   try {
     if (!fs.statSync(dir).isDirectory()) {
       throw new Error('Not a directory: ' + dir);
@@ -36,11 +48,7 @@ var main = function (method, dir) {
     }
   }
 
-  fishInstall[method](dir, function (err) {
-    if (err) throw err;
-  });
-
-  return 0;
+  return invoke(method, path.resolve(dir));
 };
 
 
@@ -57,10 +65,10 @@ process.exitCode = (function (argv) {
   try {
     switch (argv.length) {
       case 1:
-        return main('install', argv[0]);
+        return invokeWithDir('install', argv[0]);
 
       case 2:
-        return main(argv[0], argv[1]);
+        return invokeWithDir(argv[0], argv[1]);
 
       default:
         console.error(usage());

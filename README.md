@@ -17,13 +17,13 @@ No config adjustment required. `$fish_function_path` is modified instead.
 fish-install [install] $directory
 ```
 
-This line installs `$directory` as a new Fish search path.
+Install `$directory` as a new Fish search path.
 
 ```
 fish-install remove $directory
 ```
 
-This line removes `$directory` (all occurrences) from `$fish_function_path`.
+Remove `$directory` (all occurrences) from `$fish_function_path`.
 
 ## API
 
